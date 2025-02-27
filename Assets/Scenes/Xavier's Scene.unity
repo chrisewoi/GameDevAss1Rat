@@ -131,9 +131,9 @@ GameObject:
   - component: {fileID: 89696939}
   - component: {fileID: 89696938}
   - component: {fileID: 89696937}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,6 +403,10 @@ PrefabInstance:
       propertyPath: multAccelRate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6741302169872786178, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
+      propertyPath: jumpImpulse
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 7856462829200187495, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -424,9 +428,9 @@ GameObject:
   - component: {fileID: 122320707}
   - component: {fileID: 122320706}
   - component: {fileID: 122320705}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1413,9 +1417,9 @@ GameObject:
   - component: {fileID: 658736546}
   - component: {fileID: 658736545}
   - component: {fileID: 658736544}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1739,9 +1743,9 @@ GameObject:
   - component: {fileID: 813437257}
   - component: {fileID: 813437256}
   - component: {fileID: 813437255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2004,9 +2008,9 @@ GameObject:
   - component: {fileID: 899095480}
   - component: {fileID: 899095479}
   - component: {fileID: 899095478}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
