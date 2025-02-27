@@ -32,6 +32,7 @@ public class PlayerPlanarMove : MonoBehaviour, IMove
         // Input to velocity
         velocity = 
             camera.transform.right * (moveInput.x * speed) + camera.transform.forward * (moveInput.y * speed);
+        velocity.y = 0f;
     }
 
 

@@ -7,15 +7,25 @@ public class PlayerGravityMove : MonoBehaviour, IMove
     Vector3 IMove.v => velocity;
 
     public float gravity;
+    public float gravityMult;
+    public float multAccelRate;
     
     
     void Start()
     {
-        
+        gravityMult = 1;
     }
 
     void Update()
     {
-        velocity = gravity * 9.8f * Vector3.down;
+        if (PlayerMovement.grounded)
+        {
+            gravityMult = 1f;
+        }
+        else
+        {
+            gravityMult += multAccelRate * Time.deltaTime;
+        }
+        velocity = gravity * 9.8f * gravityMult * Vector3.down;
     }
 }

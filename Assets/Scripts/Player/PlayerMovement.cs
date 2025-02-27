@@ -4,10 +4,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController characterController;
-    public bool grounded;
+    public static bool grounded;
 
-    public float timeUngrounded;
-    public float timeToUnground;
+    public static float timeUngrounded;
+    public static float timeToUnground;
     
 
 
