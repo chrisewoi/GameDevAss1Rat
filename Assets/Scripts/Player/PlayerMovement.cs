@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
 
     public float timeUngrounded;
     public float timeToUnground;
-
     
 
 
@@ -22,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         moveInterfaces = GetComponents<IMove>();
+        
     }
 
     void Start()
@@ -44,6 +44,12 @@ public class PlayerMovement : MonoBehaviour
         if (timeUngrounded > timeToUnground)
         {
             grounded = false;
+        }
+
+        if (GroundCheck.isGrounded())
+        {
+            timeUngrounded = 0f;
+            grounded = true;
         }
 
         timeUngrounded += Time.deltaTime;
