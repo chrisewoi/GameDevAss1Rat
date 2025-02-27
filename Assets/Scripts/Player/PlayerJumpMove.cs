@@ -15,6 +15,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
     public float jumpCharge;
     public float jumpChargeMax;
     public float powerJumpMult;
+    private bool grounded => PlayerMovement.grounded;
 
     private PlayerMovement playerMovement;
     public bool powerJumpMode => playerMovement.GetMoveData(MoveType.Planar).magnitude <= 0.1f;
@@ -30,6 +31,10 @@ public class PlayerJumpMove : MonoBehaviour, IMove
 
     void Update()
     {
+        print("grounded: " + grounded);
+        
+
+        
         if (powerJumpMode) PowerJump();
         else Jump();
         
@@ -45,7 +50,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
     {
         jumpCharge = 0f;
         
-        if(Input.GetButtonDown("Jump") && jumpValue <= 0)
+        if(Input.GetButtonDown("Jump") && jumpValue <= 0 && grounded)
         {
             jumpValue = 1f;
         }
@@ -58,17 +63,21 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         {
             jumpCharge = 0f;
         }
-
-        if (Input.GetButtonUp("Jump")) // Released
+        
+        if (grounded)
         {
-            jumpValue = 1f;
-        }
+            if (Input.GetButtonUp("Jump")) // Released
+            {
+                jumpValue = 1f;
+            }
 
-        if (Input.GetButton("Jump")) // Held
-        {
-            jumpCharge += Time.deltaTime;
-            jumpCharge = math.clamp(jumpCharge, 0f, jumpChargeMax);
+            if (Input.GetButton("Jump")) // Held
+            {
+                jumpCharge += Time.deltaTime;
+                jumpCharge = math.clamp(jumpCharge, 0f, jumpChargeMax);
+            }
         }
+        
         
         velocity = Vector3.Lerp(Vector3.zero, jumpDir*(jumpImpulse + jumpCharge*powerJumpMult), jumpCurve.Evaluate(jumpValue));
     }
