@@ -132,9 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e344de05264283f40b52c40432dab472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grounded: 0
-  timeUngrounded: 0
-  timeToUnground: 1
 --- !u!114 &5204552915551593051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e436d87070e27d42bb61a60f891192c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 80
+  speed: 50
 --- !u!114 &6741302169872786178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 2.5
+  gravityMult: 0
+  multAccelRate: 0
 --- !u!136 &985234050984749301
 CapsuleCollider:
   m_ObjectHideFlags: 0
