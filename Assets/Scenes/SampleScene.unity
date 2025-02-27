@@ -288,7 +288,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1041,6 +1041,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grounded: 0
+  timeUngrounded: 0
+  timeToUnground: 0
 --- !u!136 &920646069
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1048,7 +1050,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920646066}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 823f8088ddc4fd34badba83c3f1c950c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1061,9 +1063,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 1.05
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.022567764, z: 0}
 --- !u!143 &920646070
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1197,7 +1199,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   jumpCharge: 0
   jumpChargeMax: 1
-  powerJumpMult: 5
+  powerJumpMult: 50
 --- !u!114 &920646075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2010,7 +2012,7 @@ GameObject:
   - component: {fileID: 2145829045}
   m_Layer: 6
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

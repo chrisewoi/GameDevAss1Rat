@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
     public bool grounded;
 
+    public float timeUngrounded;
+    public float timeToUnground;
+
     
 
 
@@ -36,9 +39,14 @@ public class PlayerMovement : MonoBehaviour
             finalVelocity += move.v;
         }
         characterController.Move(finalVelocity*Time.deltaTime);
-        
-        
-        
+
+
+        if (timeUngrounded > timeToUnground)
+        {
+            grounded = false;
+        }
+
+        timeUngrounded += Time.deltaTime;
     }
     public IMoveData[] GetMovementData()
     {
@@ -65,6 +73,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         return Vector3.positiveInfinity;
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            timeUngrounded = 0f;
+            grounded = true;
+        }
     }
 }
 public interface IMove
