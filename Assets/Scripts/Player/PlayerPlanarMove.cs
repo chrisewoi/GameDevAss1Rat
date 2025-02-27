@@ -32,6 +32,8 @@ public class PlayerPlanarMove : MonoBehaviour, IMove
         // Input to velocity
         velocity = 
             camera.transform.right * (moveInput.x * speed) + camera.transform.forward * (moveInput.y * speed);
+        
+        //makes it so you can't fly around like a damn bird
         velocity.y = 0f;
     }
 
