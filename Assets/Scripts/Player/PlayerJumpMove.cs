@@ -1,6 +1,7 @@
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerJumpMove : MonoBehaviour, IMove
 {
@@ -19,6 +20,9 @@ public class PlayerJumpMove : MonoBehaviour, IMove
 
     private PlayerMovement playerMovement;
     public bool powerJumpMode => playerMovement.GetMoveData(MoveType.Planar).magnitude <= 0.1f;
+
+
+    public Slider uiSlider;
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -44,6 +48,8 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         {
             jumpValue -= Time.deltaTime;
         }
+
+        uiSlider.value = jumpCurve.Evaluate(jumpCharge);
     }
 
     void Jump()
