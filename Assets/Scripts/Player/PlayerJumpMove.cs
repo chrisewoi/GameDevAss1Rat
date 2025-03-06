@@ -40,7 +40,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
 
     void Update()
     {
-        print("grounded: " + grounded);
+        //print("grounded: " + grounded);
 
         if (grounded)
         {
@@ -76,6 +76,10 @@ public class PlayerJumpMove : MonoBehaviour, IMove
             }
             jumpValue = Mathf.Clamp01(jumpValue);
         }
+        else if (jumpCharge < 1)
+        {
+            jumpCharge = 0f;
+        }
 
         uiSlider.value = jumpCurve.Evaluate(jumpCharge);
     }
@@ -97,6 +101,9 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         velocity = Vector3.Lerp(Vector3.zero, jumpDir*(jumpImpulse + jumpCharge*powerJumpMult), jumpCurve.Evaluate(jumpValue));
         return;
         
+        //////////
+        /// Old Code
+        //////////
         if(Input.GetButtonDown("Jump") && jumpValue <= 0) // Pressed
         {
             jumpCharge = 0f;

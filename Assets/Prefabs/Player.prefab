@@ -187,6 +187,10 @@ MonoBehaviour:
   jumpCharge: 0
   jumpChargeMax: 1
   powerJumpMult: 50
+  coyoteTimeMax: 0.2
+  coyoteTime: 0
+  coyoteJump: 0
+  uiSlider: {fileID: 0}
 --- !u!114 &6682280493887059074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,8 +218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 2.5
-  gravityMult: 0
-  multAccelRate: 0
+  gravityMult: 1
+  multAccelRate: 1
 --- !u!136 &985234050984749301
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -284,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae081578834b62468107c90911771b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 5
+  height: 1
   radius: 0.5
   layerMask:
     serializedVersion: 2
@@ -309,9 +313,81 @@ CapsuleCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1.0644822
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: -0.032241106, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3261361425951689793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3908617145880208294}
+  - component: {fileID: 7475161165177975499}
+  - component: {fileID: 5104639840220263500}
+  m_Layer: 0
+  m_Name: EdgeCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3908617145880208294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261361425951689793}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8856219891851085240}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7475161165177975499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261361425951689793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0fc51fbe2554c40b4af2dbf36a0066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canClimb: 0
+  climbImpulse: 1
+  climbDistance: 2
+  playerObject: {fileID: 434069300339023237}
+--- !u!136 &5104639840220263500
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261361425951689793}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6917673579415686115
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +420,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3908617145880208294}
   m_Father: {fileID: 2348132570259124513}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2807719295847116988
@@ -380,7 +457,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 10000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
