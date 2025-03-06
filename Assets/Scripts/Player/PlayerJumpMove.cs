@@ -47,6 +47,12 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         if (jumpValue > 0)
         {
             jumpValue -= Time.deltaTime;
+            
+
+            if (!Input.GetButton("Jump"))
+            {
+                jumpValue -= Time.deltaTime * 1f * jumpCharge;
+            }
             jumpValue = Mathf.Clamp01(jumpValue);
         }
 
@@ -106,11 +112,12 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         {
             //jumpValue = 0f;
             //jumpValue = Mathf.Clamp01(jumpValue - Time.deltaTime * 30f * (jumpValue + 1f));
-            jumpValue = Mathf.Clamp01(jumpValue - 0.3f);
+            jumpValue = Mathf.Clamp01(jumpValue - jumpValue * 0.3f);
         }
 
         if (Input.GetButton("Jump")) // Held
         {
+            jumpCharge = Mathf.Clamp01(jumpCharge - Time.deltaTime);
         }
     }
 
