@@ -39,7 +39,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         
 
         
-        if (powerJumpMode) PowerJump();
+        if (true /*powerJumpMode*/) PowerJump();
         else Jump();
         
         
@@ -47,6 +47,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         if (jumpValue > 0)
         {
             jumpValue -= Time.deltaTime;
+            jumpValue = Mathf.Clamp01(jumpValue);
         }
 
         uiSlider.value = jumpCurve.Evaluate(jumpCharge);
@@ -65,6 +66,10 @@ public class PlayerJumpMove : MonoBehaviour, IMove
 
     void PowerJump()
     {
+        Jump2();
+        velocity = Vector3.Lerp(Vector3.zero, jumpDir*(jumpImpulse + jumpCharge*powerJumpMult), jumpCurve.Evaluate(jumpValue));
+        return;
+        
         if(Input.GetButtonDown("Jump") && jumpValue <= 0) // Pressed
         {
             jumpCharge = 0f;
@@ -85,7 +90,28 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         }
         
         
-        velocity = Vector3.Lerp(Vector3.zero, jumpDir*(jumpImpulse + jumpCharge*powerJumpMult), jumpCurve.Evaluate(jumpValue));
+        //velocity = Vector3.Lerp(Vector3.zero, jumpDir*(jumpImpulse + jumpCharge*powerJumpMult), jumpCurve.Evaluate(jumpValue));
+    }
+
+    public void Jump2()
+    {
+        if(Input.GetButtonDown("Jump") && grounded) // Pressed
+        {
+            jumpValue = 1f;
+            jumpCharge = 1f;
+        }
+
+        float jumpValueOnRelease = jumpValue;
+        if (Input.GetButtonUp("Jump")) // Released
+        {
+            //jumpValue = 0f;
+            //jumpValue = Mathf.Clamp01(jumpValue - Time.deltaTime * 30f * (jumpValue + 1f));
+            jumpValue = Mathf.Clamp01(jumpValue - 0.3f);
+        }
+
+        if (Input.GetButton("Jump")) // Held
+        {
+        }
     }
 
 
