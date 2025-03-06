@@ -16,6 +16,11 @@ public class PlayerJumpMove : MonoBehaviour, IMove
     public float jumpCharge;
     public float jumpChargeMax;
     public float powerJumpMult;
+
+    public float coyoteTimeMax;
+    public float coyoteTime;
+    public bool coyoteJump;
+    
     private bool grounded => PlayerMovement.grounded;
 
     private PlayerMovement playerMovement;
@@ -30,13 +35,29 @@ public class PlayerJumpMove : MonoBehaviour, IMove
 
     void Start()
     {
-        
+        coyoteJump = false;
     }
 
     void Update()
     {
         print("grounded: " + grounded);
-        
+
+        if (grounded)
+        {
+            coyoteTime = coyoteTimeMax;
+            if (!Input.GetButton("Jump"))
+            {
+                coyoteJump = true;
+            }
+        }
+        else if (coyoteTime > 0f) 
+        {
+            coyoteTime = Mathf.Clamp(coyoteTime - Time.deltaTime, 0, coyoteTimeMax);
+        }
+        else
+        {
+            coyoteJump = false;
+        }
 
         
         if (true /*powerJumpMode*/) PowerJump();
@@ -101,10 +122,12 @@ public class PlayerJumpMove : MonoBehaviour, IMove
 
     public void Jump2()
     {
-        if(Input.GetButtonDown("Jump") && grounded) // Pressed
+        if(Input.GetButtonDown("Jump") && coyoteJump) // Pressed
         {
             jumpValue = 1f;
             jumpCharge = 1f;
+            coyoteJump = false;
+            coyoteTime = coyoteTimeMax;
         }
 
         float jumpValueOnRelease = jumpValue;
