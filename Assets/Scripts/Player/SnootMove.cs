@@ -27,7 +27,7 @@ public class SnootMove : MonoBehaviour
     void Update()
     {
         targetRot = playerMovement.GetVelocity().normalized;
-        float horizontalMagnitude = math.abs(targetRot.x * targetRot.z);
+        float horizontalMagnitude = targetRot.x * targetRot.z; //* math.dot(transform.forward, Vector3.forward) * math.dot(transform.right, Vector3.right) * math.dot(transform.up, Vector3.up);
         float vertVel, horVel;
         horVel = horizontalMagnitude;
         vertVel = targetRot.y;
@@ -44,12 +44,13 @@ public class SnootMove : MonoBehaviour
         //rot = Vector3.RotateTowards(transform.rotation.eulerAngles, horizontalMagnitude * transform.forward + vertVel * Vector3.up, 100f, 100f);
         Vector3 final =
             Vector3.RotateTowards(transform.rotation.eulerAngles, new Vector3(0, vertVel, horVel), 100f, 100f);
-        transform.rotation.eulerAngles.Set(0, final.y, final.z);
+        //transform.rotation.eulerAngles.Set(0, final.y, final.z);
         transform.localEulerAngles = new Vector3(-vertVel * rotMult, horVel * rotMult);
-        if (GroundCheck.isGrounded())
+        /*if (GroundCheck.isGrounded())
         {
             transform.up = GroundCheck.GroundNormal();
-        }
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, horVel * rotMult);
+        }*/
         //if(GroundCheck.isGrounded()) transform.localEulerAngles = 
         ;// * rotMult;
         //transform.rotation.SetLookRotation(final);

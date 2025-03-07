@@ -3738,7 +3738,7 @@ MonoBehaviour:
   mouseSensitivity: 0
   targetRot: {x: 0, y: 0, z: 0}
   rot: {x: 0, y: 0, z: 0}
-  rotMult: 1
+  rotMult: 5
   cam: {fileID: 330585545}
 --- !u!1 &1568290581
 GameObject:
