@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     public static float timeUngrounded;
     public static float timeToUnground;
-    
+
+    private Vector3 finalVelocity;
 
 
     private IMove[] moveInterfaces;
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        var finalVelocity = Vector3.zero;
+        finalVelocity = Vector3.zero;
         
         
         foreach (var move in moveInterfaces)
@@ -89,6 +90,12 @@ public class PlayerMovement : MonoBehaviour
             grounded = true;
         }
     }
+
+    public Vector3 GetVelocity()
+    {
+        return finalVelocity;
+    }
+    
 }
 public interface IMove
 {

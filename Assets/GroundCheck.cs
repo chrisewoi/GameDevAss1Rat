@@ -12,6 +12,7 @@ public class GroundCheck : MonoBehaviour
 
     private bool printChange;
     private int count;
+    private static Vector3 groundAngle;
 
     void Update()
     {
@@ -23,6 +24,7 @@ public class GroundCheck : MonoBehaviour
             Debug.DrawLine(ray.origin, hitInfo.point);
             float angle = math.asin(math.dot(hitInfo.normal, Vector3.up))*math.TODEGREES;
             //print($"normal={hitInfo.normal} hitPoint={hitInfo.point} colliderName={hitInfo.collider.gameObject.name} angle={angle}");
+            groundAngle = new Vector3(hitInfo.normal.x, hitInfo.normal.y, hitInfo.normal.z);
             grounded = true;
             ungroundedTime = 0f;
         }
@@ -51,5 +53,10 @@ public class GroundCheck : MonoBehaviour
     public static float UngroundedTime()
     {
         return ungroundedTime;
+    }
+
+    public static Vector3 GroundNormal()
+    {
+        return groundAngle;
     }
 }
