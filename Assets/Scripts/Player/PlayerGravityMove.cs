@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerGravityMove : MonoBehaviour, IMove
 {
-    private Vector3 velocity;
+    private static Vector3 velocity;
     MoveType IMove.moveType => MoveType.Gravity;
     Vector3 IMove.v => velocity;
 
@@ -27,5 +27,10 @@ public class PlayerGravityMove : MonoBehaviour, IMove
             gravityMult += multAccelRate * Time.deltaTime;
         }
         velocity = gravity * 9.8f * gravityMult * Vector3.down;
+    }
+
+    public static Vector3 GetGravityVelocity()
+    {
+        return velocity;
     }
 }

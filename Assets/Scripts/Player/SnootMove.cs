@@ -9,54 +9,97 @@ public class SnootMove : MonoBehaviour
     
     public Vector2 angle;
 
+    public float horizontalMove => Input.GetAxis("Horizontal");
+    public float horizontalMoveSmooth;
+
     public Vector2 yBounds;
 
-    public float mouseSensitivity;
+    public float mouseSensitivity => PlayerCamera.mouseSensitivity;
 
-    public Vector3 targetRot, rot;
+    public Vector3 targetXRot, rot;
 
-    public float rotMult;
+    public float xRotMult, yRotMult, yMoveMult;
+
+    public float xVel, yVel, moveVel, xSmoothTime, ySmoothTime;
+
+    private float xSmoothTimeFalloff;
+
+    public float smoothX, smoothY;
 
     public Camera cam;
     
     void Start()
     {
-        
+        //PlayerCamera.yTilt
+        xVel = 0;
+        yVel = 0;
+        moveVel = 0;
+        xSmoothTimeFalloff = 0;
     }
 
     void Update()
     {
-        targetRot = playerMovement.GetVelocity().normalized;
-        float horizontalMagnitude = targetRot.x * targetRot.z; //* math.dot(transform.forward, Vector3.forward) * math.dot(transform.right, Vector3.right) * math.dot(transform.up, Vector3.up);
-        float vertVel, horVel;
-        horVel = horizontalMagnitude;
-        vertVel = targetRot.y;
-        
-        float xTarget = targetRot.x * targetRot.z;
-        var mouseDelta = Mouse.current.delta.ReadValue();
-        angle += mouseDelta * (mouseSensitivity * Time.deltaTime);
-        angle.y = math.clamp(angle.y, yBounds.x, yBounds.y);
-        //var xRot = Quaternion.AngleAxis(angle.x,Vector3.up);
-        //var yRot = Quaternion.AngleAxis(-angle.y,Vector3.right);
-        
-        //var xRot = Quaternion.Euler(xTarget, 0 ,0);
-        
-        //rot = Vector3.RotateTowards(transform.rotation.eulerAngles, horizontalMagnitude * transform.forward + vertVel * Vector3.up, 100f, 100f);
-        Vector3 final =
-            Vector3.RotateTowards(transform.rotation.eulerAngles, new Vector3(0, vertVel, horVel), 100f, 100f);
-        //transform.rotation.eulerAngles.Set(0, final.y, final.z);
-        transform.localEulerAngles = new Vector3(-vertVel * rotMult, horVel * rotMult);
-        /*if (GroundCheck.isGrounded())
+        if (GroundCheck.isGrounded()) xSmoothTimeFalloff = xSmoothTime;
+        xSmoothTimeFalloff -= Time.deltaTime;
+        xSmoothTimeFalloff = math.clamp(xSmoothTimeFalloff, 0.15f, xSmoothTime);
+
+        //zRot is banking which we never want
+        //xRot is up/down tilt
+        //yRot is turn left/right
+
+        // project velocity onto the X plane to get target X rotation
+        targetXRot = Vector3.ProjectOnPlane(playerMovement.GetVelocity(), transform.right).normalized;
+        //print($"x tilt = {-targetXRot.y * xRotMult}. y tile = {targetXRot.x}");
+
+        //float forwardBackward = Vector3.Dot(transform.forward, targetXRot);
+        //bool movingBackwards = forwardBackward < 0;
+        //float backwardsMult = movingBackwards ? -1 : 1;
+        //print($"fb = {forwardBackward}. moveBackwards = {movingBackwards}");
+
+        if (GroundCheck.isGrounded()) targetXRot.y = ((5 / xRotMult) + targetXRot.y ) /2f;
+
+        // Smooth rotation
+        smoothX = Mathf.SmoothDampAngle(transform.localEulerAngles.x, Mathf.Repeat(-targetXRot.y * xRotMult, 360f), ref xVel, xSmoothTimeFalloff);
+        if (smoothX > 100f)
         {
-            transform.up = GroundCheck.GroundNormal();
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, horVel * rotMult);
-        }*/
-        //if(GroundCheck.isGrounded()) transform.localEulerAngles = 
-        ;// * rotMult;
-        //transform.rotation.SetLookRotation(final);
+            smoothX = -360 + smoothX;
+        }
+        //smoothX = math.clamp(smoothX, yBounds.x, yBounds.y);
+
+        // CAMERA Y TILT
+        //PlayerCamera.yTilt = smoothX;
+        print("smoothX: " + smoothX);
+        print("targetxrot.y = " + -targetXRot.y * xRotMult);
+        print("targetXRot: " + targetXRot);
+
+        var mouseDelta = Mouse.current.delta.ReadValue();
+        angle += mouseDelta * mouseSensitivity * yRotMult;
+        angle.x = math.clamp(angle.x, yBounds.x, yBounds.y);
+
+        // both horizontalMove and mouseAngle values will be clamped to the yBounds and those bounds will be the max for both.
+        horizontalMoveSmooth += horizontalMove * yBounds.y * yMoveMult * Time.deltaTime;
+        horizontalMoveSmooth = math.clamp(horizontalMoveSmooth, yBounds.x, yBounds.y);
+        horizontalMoveSmooth = Mathf.SmoothDamp(horizontalMoveSmooth, 0, ref moveVel, ySmoothTime);
+        angle.x = Mathf.SmoothDamp(angle.x, 0, ref yVel, ySmoothTime);
+        smoothY = angle.x + horizontalMoveSmooth /2f;
+        //smoothY = Mathf.SmoothDamp(smoothY, 0, ref yVel, ySmoothTime * Time.deltaTime);
+        
+
+        // applying the x & y Rotation
+        transform.localEulerAngles = new Vector3(smoothX, smoothY, transform.localEulerAngles.z);
+
+
+
+
+        /*Vector3 final =
+            Vector3.RotateTowards(transform.rotation.eulerAngles, new Vector3(0, targetRot.x, targetRot.y), 100f, 100f);
+        transform.localEulerAngles = new Vector3(-vertVel * rotMult, horVel * rotMult);
         print(final);
-            //Quaternion.Euler();
-        //transform.Rotate(xTarget, 0, 0);
-        //transform.rotation = Quaternion.Euler(rot);
+        print("project: " + Vector3.ProjectOnPlane(playerMovement.GetVelocity() - PlayerGravityMove.GetGravityVelocity(), transform.right));
+        */
+    }
+    public float GetSmoothX()
+    {
+        return smoothX;
     }
 }
