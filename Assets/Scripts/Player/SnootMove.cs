@@ -68,9 +68,9 @@ public class SnootMove : MonoBehaviour
 
         // CAMERA Y TILT
         //PlayerCamera.yTilt = smoothX;
-        print("smoothX: " + smoothX);
-        print("targetxrot.y = " + -targetXRot.y * xRotMult);
-        print("targetXRot: " + targetXRot);
+        //print("smoothX: " + smoothX);
+        //print("targetxrot.y = " + -targetXRot.y * xRotMult);
+        //print("targetXRot: " + targetXRot);
 
         var mouseDelta = Mouse.current.delta.ReadValue();
         angle += mouseDelta * mouseSensitivity * yRotMult;
