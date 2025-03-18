@@ -16,6 +16,8 @@ public class PlayerJumpMove : MonoBehaviour, IMove
     public float jumpCharge;
     public float jumpChargeMax;
     public float powerJumpMult;
+    public float jumpBuffer;
+    public float jumpBufferCurrent;
 
     public float coyoteTimeMax;
     public float coyoteTime;
@@ -40,6 +42,10 @@ public class PlayerJumpMove : MonoBehaviour, IMove
 
     void Update()
     {
+        if (Input.GetButton("Jump"))
+        {
+            jumpBufferCurrent = jumpBuffer;
+        }
         //print("grounded: " + grounded);
 
         if (grounded)
@@ -82,13 +88,15 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         }
 
         uiSlider.value = jumpCurve.Evaluate(jumpCharge);
+        jumpBufferCurrent -= Time.deltaTime;
+        jumpBufferCurrent = math.clamp(jumpBufferCurrent, 0, jumpBuffer);
     }
 
     void Jump()
     {
         jumpCharge = 0f;
         
-        if(Input.GetButtonDown("Jump") && jumpValue <= 0 && grounded)
+        if(Input.GetButtonDown("Jump") && jumpValue <= 0 && grounded) // ADD JUMPBUFFER HERE
         {
             jumpValue = 1f;
         }
