@@ -42,7 +42,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
 
     void Update()
     {
-        if (Input.GetButton("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
             jumpBufferCurrent = jumpBuffer;
         }
@@ -51,7 +51,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         if (grounded)
         {
             coyoteTime = coyoteTimeMax;
-            if (!Input.GetButton("Jump"))
+            if (!Input.GetButton("Jump") || true)
             {
                 coyoteJump = true;
             }
@@ -137,7 +137,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
 
     public void Jump2()
     {
-        if(Input.GetButtonDown("Jump") && coyoteJump) // Pressed
+        if(((jumpBufferCurrent > 0 && Input.GetButton("Jump")) || Input.GetButtonDown("Jump")) && coyoteJump) // Pressed
         {
             jumpValue = 1f;
             jumpCharge = 1f;
