@@ -51,10 +51,9 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         if (grounded)
         {
             coyoteTime = coyoteTimeMax;
-            if (!Input.GetButton("Jump") || true)
-            {
-                coyoteJump = true;
-            }
+            //if (!Input.GetButton("Jump")) removing this condition, cant remmeber what its even for???
+            coyoteJump = true;
+            
         }
         else if (coyoteTime > 0f) 
         {
