@@ -39,13 +39,7 @@ namespace UI
                 }
                 
             }
-
-            while (paused)
-            {
-                playing = false;
-            }
-
-
+            
             Time.timeScale = paused ? 0 : 1;
         }
 
