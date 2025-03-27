@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Edge
+  - Butter
   layers:
   - Default
   - TransparentFX
