@@ -22,7 +22,7 @@ namespace UI
         {
             _timer = 0;
             playing = true;
-            
+
             DisablePanel();
         }
 
@@ -37,16 +37,22 @@ namespace UI
                 {
                     paused = !paused;
                 }
-                
+
             }
-            
+
             Time.timeScale = paused ? 0 : 1;
+
+            if( _timer > 1.5) 
+            {
+                EnablePanel();
+                Time.timeScale = 0;
+            }
         }
 
         private void DisablePanel()
         {
-            
-             panelToControl.SetActive(false);
+
+            panelToControl.SetActive(false);
         }
 
         private void EnablePanel()
@@ -63,5 +69,5 @@ namespace UI
             }
         }
     }
-    
+
 }
