@@ -86,7 +86,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
             jumpCharge = 0f;
         }
 
-        uiSlider.value = jumpCurve.Evaluate(jumpCharge);
+        //uiSlider.value = jumpCurve.Evaluate(jumpCharge);
         jumpBufferCurrent -= Time.deltaTime;
         jumpBufferCurrent = math.clamp(jumpBufferCurrent, 0, jumpBuffer);
     }
