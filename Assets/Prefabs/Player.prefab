@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 116200436689180205}
   - component: {fileID: 7380495758204368092}
   - component: {fileID: 4173373475905478654}
+  - component: {fileID: 6682280493887059074}
   - component: {fileID: 1927734131607180010}
   - component: {fileID: 5204552915551593051}
   - component: {fileID: 6741302169872786178}
-  - component: {fileID: 6682280493887059074}
   - component: {fileID: 4990852460197749767}
   - component: {fileID: 985234050984749301}
   m_Layer: 0
@@ -120,6 +120,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6682280493887059074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434069300339023237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48ca13ade06a1a4ea9979b7a8b84d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onButter: 0
+  butterPrefab: {fileID: 537722631848621419, guid: 50007d391ed19814db624c182ae6107a, type: 3}
+  camera: {fileID: 6917673579415686115}
+  butterYOffset: 1.2
+  mountTime: 1
+  timeActivated: 0
+  speed: 80
+  sliding: 0
 --- !u!114 &1927734131607180010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,24 +207,12 @@ MonoBehaviour:
   jumpCharge: 0
   jumpChargeMax: 1
   powerJumpMult: 50
+  jumpBuffer: 0.2
+  jumpBufferCurrent: 0
   coyoteTimeMax: 0.2
   coyoteTime: 0
   coyoteJump: 0
   uiSlider: {fileID: 0}
---- !u!114 &6682280493887059074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 434069300339023237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a48ca13ade06a1a4ea9979b7a8b84d28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 80
-  sliding: 0
 --- !u!114 &4990852460197749767
 MonoBehaviour:
   m_ObjectHideFlags: 0

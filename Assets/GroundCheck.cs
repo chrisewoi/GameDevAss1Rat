@@ -10,16 +10,19 @@ public class GroundCheck : MonoBehaviour
     public LayerMask layerMask;
     public static float ungroundedTime = 0f;
 
+    public bool isSliding => PlayerButterSlideMove.IsSliding();
+
     private bool printChange;
     private int count;
     private static Vector3 groundAngle;
 
     void Update()
     {
+        float butterHeight = PlayerButterSlideMove.ButterHeight();
         Ray ray = new Ray();
         ray.origin = transform.position;
         ray.direction = Vector3.down;
-        if (Physics.SphereCast(ray, radius, out var hitInfo, height / 2f, layerMask, QueryTriggerInteraction.Collide))
+        if (Physics.SphereCast(ray, radius + butterHeight, out var hitInfo, height / 2f, layerMask, QueryTriggerInteraction.Collide))
         {
             Debug.DrawLine(ray.origin, hitInfo.point);
             float angle = math.asin(math.dot(hitInfo.normal, Vector3.up))*math.TODEGREES;

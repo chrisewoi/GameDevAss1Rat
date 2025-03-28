@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         finalVelocity = Vector3.zero;
-        
+        characterController.radius = 0.5f + PlayerButterSlideMove.ButterHeight();
         
         foreach (var move in moveInterfaces)
         {
