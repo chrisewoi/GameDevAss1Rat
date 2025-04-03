@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2122155904168930351}
   - component: {fileID: 3088539262228079498}
   - component: {fileID: 952587538435102528}
+  - component: {fileID: -7600009386500758938}
   m_Layer: 6
   m_Name: Lemon_Half
   m_TagString: Ground
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -428.94925, y: 1.8294224, z: -432.72687}
-  m_LocalScale: {x: 1.9223484, y: 1.9223484, z: 1.9223484}
+  m_LocalScale: {x: 3.6, y: 3.6, z: 3.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,3 +87,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-7600009386500758938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601233221118129813}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8394288, y: 1.1599922, z: 1.8394287}
+  m_Center: {x: 0, y: -0.3716636, z: 0.00000008940697}
