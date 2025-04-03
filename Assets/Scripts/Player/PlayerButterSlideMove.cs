@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -22,6 +23,12 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     public float speed;
 
     private float v;
+    
+    public float height;
+
+    public float radius;
+
+    public LayerMask layerMask;
     
     void Start()
     {
@@ -88,5 +95,23 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     public static float ButterHeight()
     {
         return butterHeight;
+    }
+    
+    Vector3 GetNormal()
+    {
+        float butterHeight = PlayerButterSlideMove.ButterHeight();
+        Ray ray = new Ray();
+        ray.origin = transform.position;
+        ray.direction = Vector3.down;
+        if (Physics.SphereCast(ray, radius + butterHeight, out var hitInfo, height / 2f, layerMask, QueryTriggerInteraction.Collide))
+        {
+            Debug.DrawLine(ray.origin, hitInfo.point);
+            float angle = math.asin(math.dot(hitInfo.normal, Vector3.up))*math.TODEGREES;
+            //print($"normal={hitInfo.normal} hitPoint={hitInfo.point} colliderName={hitInfo.collider.gameObject.name} angle={angle}");
+            return new Vector3(hitInfo.normal.x, hitInfo.normal.y, hitInfo.normal.z);
+
+        }
+
+        return Vector3.up;
     }
 }
