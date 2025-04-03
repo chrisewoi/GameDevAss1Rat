@@ -2,6 +2,7 @@ using System;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 public class PlayerButterSlideMove : MonoBehaviour, IMove
 {
@@ -14,15 +15,22 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     private PlayerJumpMove jumpScript;
     private float butterPickupY;
     public float mountTime;
+    public float butterTiltTime;
+    public float maxTiltAngle;
     public float timeActivated;
     public MeshCollider butterMeshCollider;
     private static float butterHeight;
+    private bool runOnce;
+
+    private Vector3 smoothNormal;
     MoveType IMove.moveType => MoveType.ButterSlide;
     Vector3 IMove.v => velocity;
 
     public float speed;
 
-    private float v;
+    private float yV, xV, zV;
+    private Vector3 smoothNormalV;
+    
     
     public float height;
 
@@ -33,26 +41,37 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     void Start()
     {
         jumpScript = GetComponent<PlayerJumpMove>();
+        runOnce = true;
     }
 
     void Update()
     {
         if (onButter && butter != null)
         {
+            if (runOnce)
+            {
+                runOnce = false;
+                Destroy(butter.GetComponent<Rigidbody>());
+                butterHeight = butterMeshCollider.bounds.size.y;
+                Destroy(butterMeshCollider);
+            }
             butter.transform.position = transform.position;
             butter.transform.position -= new Vector3(0,butterYOffset, 0);
-            
-            Vector3 angles = butter.transform.eulerAngles;
+            smoothNormal = Vector3.SmoothDamp(smoothNormal, GroundCheck.GroundNormal(), ref smoothNormalV, butterTiltTime);
+            Vector3 angles = butter.transform.InverseTransformDirection(smoothNormal * maxTiltAngle);
+            Vector3 currentAngles = transform.eulerAngles;
+            //float smoothX = Mathf.SmoothDampAngle(currentAngles.x, angles.z, ref xV, butterTiltTime);
+            //float smoothZ = Mathf.SmoothDampAngle(currentAngles.z, -angles.x, ref zV, butterTiltTime);
             
             angles.y = camera.transform.eulerAngles.y + 90f;
-            float currentY = angles.y;
-            angles.y = Mathf.SmoothDampAngle(butter.transform.rotation.eulerAngles.y, angles.y, ref v, 0.03f);
-            angles.z = GroundCheck.GroundNormal().z;
-            print(transform.InverseTransformDirection(GroundCheck.GroundNormal()));
-            butter.transform.rotation = Quaternion.Euler(angles);
+            float currentY = angles.y;  
+            angles.y = Mathf.SmoothDampAngle(butter.transform.rotation.eulerAngles.y, angles.y, ref yV, 0.03f);
+            //angles.z = GroundCheck.GroundNormal().z;
+            //angles.z = butter.transform.InverseTransformDirection(GroundCheck.GroundNormal()).z;
+            butter.transform.rotation = Quaternion.Euler(new Vector3(angles.z, angles.y, -angles.x));
             //butter.transform.rotation = Quaternion.Slerp(butter.transform.rotation, Quaternion.Euler(angles), Time.deltaTime * 100f);
 
-            butterHeight = butterMeshCollider.bounds.size.y;
+            
 
             if (timeActivated > Time.time - mountTime)
             {
@@ -68,7 +87,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Butter"))
         {
