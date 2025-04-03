@@ -41,4 +41,9 @@ public class ButterTilt : MonoBehaviour
 
         return GroundCheck.GroundNormal();
     }
+
+    public Vector3 SmoothTarget(Vector3 target)
+    {
+        return target;
+    }
 }
