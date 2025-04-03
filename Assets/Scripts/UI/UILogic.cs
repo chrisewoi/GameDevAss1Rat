@@ -42,26 +42,21 @@ namespace UI
                 }
 
             }
-
-            /*if(panelToControl == isActiveAndEnabled)
+            if (jumpTutorialPanel.activeInHierarchy && Input.anyKeyDown)
             {
-                jumpTutorialPanel.SetActive(false);
-            }*/
+                DisablePanel();
+                paused = false;
+                //Time.timeScale = 1;
+                panelTrigger.SetActive(false);
+                //jumpTutorialPanel.SetActive(false);
+            }
+            
             
             Time.timeScale = paused ? 0 : 1;
 
             PanelController();
 
-            /*if( _timer > 1.5) 
-            {
-                EnablePanel();
-                Time.timeScale = 0;
-                if (Input.anyKeyDown)
-                {
-                    DisablePanel();
-                    Time.timeScale = 0;
-                }
-            }*/
+            
         }
         
         public void PanelController()
@@ -109,12 +104,13 @@ namespace UI
                 jumpTutorialPanel.SetActive(true);
                 paused = true;
                 Debug.Log("triggered");
-                if (Input.anyKeyDown)
+                /*if (Input.anyKeyDown)
                 {
                     DisablePanel();
                     Time.timeScale = 1;
+                    jumpTutorialPanel.SetActive(false);
                     //jumpTutorialPanel.SetActive(false);
-                }
+                }*/
             }
             
         }
