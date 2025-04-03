@@ -9,9 +9,12 @@ namespace UI
     public class UILogic : MonoBehaviour
     {
         public GameObject panelToControl;
+        public GameObject jumpTutorialPanel;
         public bool playing;
         public bool paused;
         public GameObject panelTrigger;
+        private bool doOnce = false;
+        //[SerializeField] Transform player;
 
         //public bool isActive;
 
@@ -42,30 +45,64 @@ namespace UI
 
             Time.timeScale = paused ? 0 : 1;
 
-            if( _timer > 1.5) 
+            PanelController();
+
+            /*if( _timer > 1.5) 
             {
                 EnablePanel();
                 Time.timeScale = 0;
+                if (Input.anyKeyDown)
+                {
+                    DisablePanel();
+                    Time.timeScale = 0;
+                }
+            }*/
+        }
+        
+        public void PanelController()
+        {
+            if (!doOnce)
+            {
+                if( _timer > 1.5)
+                {
+                    
+                    EnablePanel();
+                    Time.timeScale = 0;
+                    if (Input.anyKeyDown)
+                    {
+                        DisablePanel();
+                        Time.timeScale = 1;
+                        doOnce = true;
+                    }
+                } 
             }
+            
         }
 
         private void DisablePanel()
         {
-
             panelToControl.SetActive(false);
+            jumpTutorialPanel.SetActive(false);
         }
 
         private void EnablePanel()
         {
             panelToControl.SetActive(true);
+            while (panelToControl == isActiveAndEnabled)
+            {
+                jumpTutorialPanel.SetActive(false);
+            }
+            jumpTutorialPanel.SetActive(true);
         }
 
-        public void OnTriggerEnter(Collider trigger)
+        private void OnTriggerEnter(Collider other)
         {
-            if (trigger.transform.CompareTag("UITrigger"))
+            Debug.Log("Touched");
+            if (other.CompareTag("UITrigger"))
             {
                 EnablePanel();
-                playing = false;
+                paused = true;
+                Debug.Log("triggered");
             }
         }
     }
