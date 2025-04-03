@@ -43,6 +43,11 @@ namespace UI
 
             }
 
+            /*if(panelToControl == isActiveAndEnabled)
+            {
+                jumpTutorialPanel.SetActive(false);
+            }*/
+            
             Time.timeScale = paused ? 0 : 1;
 
             PanelController();
@@ -88,11 +93,12 @@ namespace UI
         private void EnablePanel()
         {
             panelToControl.SetActive(true);
-            while (panelToControl == isActiveAndEnabled)
+            //jumpTutorialPanel.SetActive(false);
+            /*while (panelToControl == isActiveAndEnabled)
             {
                 jumpTutorialPanel.SetActive(false);
             }
-            jumpTutorialPanel.SetActive(true);
+            jumpTutorialPanel.SetActive(true);*/
         }
 
         private void OnTriggerEnter(Collider other)
@@ -100,11 +106,23 @@ namespace UI
             Debug.Log("Touched");
             if (other.CompareTag("UITrigger"))
             {
-                EnablePanel();
+                jumpTutorialPanel.SetActive(true);
                 paused = true;
                 Debug.Log("triggered");
+                if (Input.anyKeyDown)
+                {
+                    DisablePanel();
+                    Time.timeScale = 1;
+                    //jumpTutorialPanel.SetActive(false);
+                }
             }
+            
         }
+
+        /*private void OnTriggerExit(Collider other)
+        {
+            panelTrigger.SetActive(false);
+        }*/
     }
 
 }

@@ -694,7 +694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 152320590}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6936,6 +6936,10 @@ PrefabInstance:
     - target: {fileID: 2316861212596178040, guid: 276c559c6db5c774986d081206063581, type: 3}
       propertyPath: m_Name
       value: Cupboard_open_v4 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316861212596178040, guid: 276c559c6db5c774986d081206063581, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3129144482597787330, guid: 276c559c6db5c774986d081206063581, type: 3}
       propertyPath: m_LocalPosition.x
