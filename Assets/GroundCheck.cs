@@ -34,6 +34,7 @@ public class GroundCheck : MonoBehaviour
         else
         {
             grounded = false;
+            groundAngle = Vector3.zero;
             ungroundedTime += Time.deltaTime;
         }
 

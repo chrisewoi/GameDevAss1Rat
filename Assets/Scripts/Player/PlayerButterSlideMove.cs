@@ -99,19 +99,11 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     
     Vector3 GetNormal()
     {
-        float butterHeight = PlayerButterSlideMove.ButterHeight();
-        Ray ray = new Ray();
-        ray.origin = transform.position;
-        ray.direction = Vector3.down;
-        if (Physics.SphereCast(ray, radius + butterHeight, out var hitInfo, height / 2f, layerMask, QueryTriggerInteraction.Collide))
+        if (GroundCheck.GroundNormal() == Vector3.zero) // No ground angle detected
         {
-            Debug.DrawLine(ray.origin, hitInfo.point);
-            float angle = math.asin(math.dot(hitInfo.normal, Vector3.up))*math.TODEGREES;
-            //print($"normal={hitInfo.normal} hitPoint={hitInfo.point} colliderName={hitInfo.collider.gameObject.name} angle={angle}");
-            return new Vector3(hitInfo.normal.x, hitInfo.normal.y, hitInfo.normal.z);
-
+            return Vector3.up;
         }
 
-        return Vector3.up;
+        return GroundCheck.GroundNormal();
     }
 }

@@ -28,26 +28,17 @@ public class ButterTilt : MonoBehaviour
     void Update()
     {
         float yRot = transform.rotation.eulerAngles.y;
-        transform.up = GetNormal(); //transform.InverseTransformDirection(GroundCheck.GroundNormal());
-        print("butter normal: " + transform.up);
+        transform.up = transform.InverseTransformDirection(GetNormal().normalized); //transform.InverseTransformDirection(GroundCheck.GroundNormal());
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRot, transform.eulerAngles.z);
     }
 
     Vector3 GetNormal()
     {
-        float butterHeight = PlayerButterSlideMove.ButterHeight();
-        Ray ray = new Ray();
-        ray.origin = transform.position;
-        ray.direction = Vector3.down;
-        if (Physics.SphereCast(ray, radius + butterHeight, out var hitInfo, height / 2f, layerMask, QueryTriggerInteraction.Collide))
+        if (GroundCheck.GroundNormal() == Vector3.zero) // No ground angle detected
         {
-            Debug.DrawLine(ray.origin, hitInfo.point);
-            float angle = math.asin(math.dot(hitInfo.normal, Vector3.up))*math.TODEGREES;
-            //print($"normal={hitInfo.normal} hitPoint={hitInfo.point} colliderName={hitInfo.collider.gameObject.name} angle={angle}");
-            return new Vector3(hitInfo.normal.x, hitInfo.normal.y, hitInfo.normal.z);
-
+            return Vector3.up;
         }
 
-        return Vector3.up;
+        return GroundCheck.GroundNormal();
     }
 }
