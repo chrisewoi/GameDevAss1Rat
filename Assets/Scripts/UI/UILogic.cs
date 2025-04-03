@@ -1,8 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
 
 namespace UI
 {
@@ -13,26 +9,22 @@ namespace UI
         public bool playing;
         public bool paused;
         public GameObject panelTrigger;
-        private bool doOnce = false;
-        //[SerializeField] Transform player;
-
-        //public bool isActive;
-
+        private bool _doOnce;
+        
         float _timer;
-
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        
         private void Start()
         {
-            _timer = 0;
-            playing = true;
-
-            DisablePanel();
+            _timer = 0;//On start _timer starts at zero
+            playing = true;//sets the bool to playing 
+            DisablePanel();//Disables any of our UI panels
         }
-
-
-        // Update is called once per frame
+        
         void Update()
         {
+            //If the game is playing.
+            //The player can press escape to pause the game.
+            //Freezing time and pausing the game.
             if (playing)
             {
                 _timer += Time.deltaTime;
@@ -46,56 +38,53 @@ namespace UI
             {
                 DisablePanel();
                 paused = false;
-                //Time.timeScale = 1;
                 panelTrigger.SetActive(false);
-                //jumpTutorialPanel.SetActive(false);
             }
             
-            
+            //If the game is paused set the time to zero freezing the game, if it isn't set it to 1 putting it at a normal scale.
             Time.timeScale = paused ? 0 : 1;
-
-            PanelController();
-
             
+            //Reference for our PanelController method in update().
+            PanelController();
         }
         
-        public void PanelController()
+        //PanelController() goes through all the actions once so it doesn't loop.
+        private void PanelController()
         {
-            if (!doOnce)
+            if (_doOnce) return;
+            //if time has reached 1.5 seconds.
+            if( _timer > 1.5)
             {
-                if( _timer > 1.5)
-                {
+                //Enable the panel and stop time completely.
+                EnablePanel();
+                Time.timeScale = 0;
                     
-                    EnablePanel();
-                    Time.timeScale = 0;
-                    if (Input.anyKeyDown)
-                    {
-                        DisablePanel();
-                        Time.timeScale = 1;
-                        doOnce = true;
-                    }
-                } 
+                //If any key is pressed disable the panel and time returns to the normal scale.
+                if (Input.anyKeyDown)
+                {
+                    DisablePanel();
+                    Time.timeScale = 1;
+                    _doOnce = true;
+                }
             }
-            
         }
-
+        
+        //Disables panels by deactivating the game object
         private void DisablePanel()
         {
             panelToControl.SetActive(false);
             jumpTutorialPanel.SetActive(false);
         }
-
+        
+        //Enables panels by activating the game object
         private void EnablePanel()
         {
             panelToControl.SetActive(true);
             //jumpTutorialPanel.SetActive(false);
-            /*while (panelToControl == isActiveAndEnabled)
-            {
-                jumpTutorialPanel.SetActive(false);
-            }
-            jumpTutorialPanel.SetActive(true);*/
         }
-
+        
+        //When the player enters the trigger zone pause time.
+        //Also set the jumpTutorialPanel object to true so we can see it in the game.
         private void OnTriggerEnter(Collider other)
         {
             Debug.Log("Touched");
@@ -104,21 +93,7 @@ namespace UI
                 jumpTutorialPanel.SetActive(true);
                 paused = true;
                 Debug.Log("triggered");
-                /*if (Input.anyKeyDown)
-                {
-                    DisablePanel();
-                    Time.timeScale = 1;
-                    jumpTutorialPanel.SetActive(false);
-                    //jumpTutorialPanel.SetActive(false);
-                }*/
             }
-            
         }
-
-        /*private void OnTriggerExit(Collider other)
-        {
-            panelTrigger.SetActive(false);
-        }*/
     }
-
 }
