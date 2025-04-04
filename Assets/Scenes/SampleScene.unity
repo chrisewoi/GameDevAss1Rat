@@ -8110,6 +8110,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230588577}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1234132938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1234132939}
+  m_Layer: 0
+  m_Name: ButterOrienter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1234132939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234132938}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 104191137}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1234728309
 GameObject:
   m_ObjectHideFlags: 0
@@ -14633,6 +14664,10 @@ PrefabInstance:
       propertyPath: layerMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 6682280493887059074, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
+      propertyPath: butterOrientationTarget
+      value: 
+      objectReference: {fileID: 1234132939}
     - target: {fileID: 6741302169872786178, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: uiSlider
       value: 
@@ -14687,6 +14722,9 @@ PrefabInstance:
     - {fileID: 3687795784753404615, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
     - {fileID: 707100141758250492, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2348132570259124513, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1234132939}
     - targetCorrespondingSourceObject: {fileID: 1273925209703829334, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1543994635}
