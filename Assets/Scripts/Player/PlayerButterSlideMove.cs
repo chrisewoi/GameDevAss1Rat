@@ -62,6 +62,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     {
         if (onButter && butter != null)
         {
+            //velocity = PlayerPlanarMove.GetVelocity();
             if (runOnce)
             {
                 runOnce = false;

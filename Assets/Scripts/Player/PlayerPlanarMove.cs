@@ -41,4 +41,6 @@ public class PlayerPlanarMove : MonoBehaviour, IMove
         //makes it so you can't fly around like a damn bird 
         velocity.y = 0f;
     }
+
+    
 }

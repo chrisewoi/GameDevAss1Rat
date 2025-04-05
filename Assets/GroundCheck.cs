@@ -10,6 +10,7 @@ public class GroundCheck : MonoBehaviour
     public LayerMask layerMask;
     private static float ungroundedTime = 0f;
     private static float groundedTime = 0f;
+    public float airborneTime;
 
     public bool isSliding => PlayerButterSlideMove.IsSliding();
 
@@ -30,6 +31,7 @@ public class GroundCheck : MonoBehaviour
             //print($"normal={hitInfo.normal} hitPoint={hitInfo.point} colliderName={hitInfo.collider.gameObject.name} angle={angle}");
             groundAngle = new Vector3(hitInfo.normal.x, hitInfo.normal.y, hitInfo.normal.z);
             grounded = true;
+            if(ungroundedTime > 0f) airborneTime = ungroundedTime;
             ungroundedTime = 0f;
             groundedTime += Time.deltaTime;
         }
@@ -44,7 +46,7 @@ public class GroundCheck : MonoBehaviour
         // print if I'm grounded only when value changes
         if (printChange == grounded)
         {
-            print("Grounded (" + count + "): " + grounded);
+            print("Grounded (" + count + "): " + grounded + ", Time Airborne: " + airborneTime);
             printChange = !printChange;
             count++;
         }
