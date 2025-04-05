@@ -18,8 +18,7 @@ GameObject:
   - component: {fileID: 131628451254453932}
   - component: {fileID: 5549020284640945632}
   - component: {fileID: 1168231739332870443}
-  - component: {fileID: 72406069745333758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ButterGood
   m_TagString: Butter
   m_Icon: {fileID: 0}
@@ -905,7 +904,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 16
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2f18c31fccdbb7f47bd18ae011966aa2, type: 2}
@@ -1040,27 +1039,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.7641296, y: 1.5999107, z: 4.434265}
   m_Center: {x: 0.04234314, y: 0.0945797, z: 0.07058716}
---- !u!135 &72406069745333758
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537722631848621419}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.8
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4242564580291145093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,20 +1350,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 6747432583529983109}
     m_Modifications:
     - target: {fileID: 1638357299800769695, guid: f4cfd273a4a8c8047847b73a45ed422a, type: 3}
-      propertyPath: m_Size.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1638357299800769695, guid: f4cfd273a4a8c8047847b73a45ed422a, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1638357299800769695, guid: f4cfd273a4a8c8047847b73a45ed422a, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1638357299800769695, guid: f4cfd273a4a8c8047847b73a45ed422a, type: 3}
-      propertyPath: m_Offset.z
-      value: 0
+      propertyPath: m_DecalLayerMask
+      value: 238
       objectReference: {fileID: 0}
     - target: {fileID: 2007436289139848082, guid: f4cfd273a4a8c8047847b73a45ed422a, type: 3}
       propertyPath: m_Enabled

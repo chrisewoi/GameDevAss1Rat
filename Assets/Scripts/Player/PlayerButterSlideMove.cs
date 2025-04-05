@@ -22,6 +22,12 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     private static float butterHeight;
     private bool runOnce;
 
+    public float butterUngroundedDismountTime;
+    public float disableMountAfterDismountTime;
+    public float timeDismounted;
+    public PhysicsMaterial butterPhysicsMaterial;
+    private PlayerMovement playerMovement;
+
     private Vector3 smoothNormal;
     MoveType IMove.moveType => MoveType.ButterSlide;
     Vector3 IMove.v => velocity;
@@ -41,7 +47,9 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     void Start()
     {
         jumpScript = GetComponent<PlayerJumpMove>();
+        playerMovement = GetComponent<PlayerMovement>();
         runOnce = true;
+        timeDismounted = 10f;
     }
 
     void Update()
@@ -70,9 +78,9 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
             //angles.z = butter.transform.InverseTransformDirection(GroundCheck.GroundNormal()).z;
             butter.transform.rotation = Quaternion.Euler(new Vector3(angles.z, angles.y, -angles.x));
             //butter.transform.rotation = Quaternion.Slerp(butter.transform.rotation, Quaternion.Euler(angles), Time.deltaTime * 100f);
-
             
-
+            
+            // sets butter yPos after mount time has passed
             if (timeActivated > Time.time - mountTime)
             {
                 Vector3 clampedPos = new Vector3(butter.transform.position.x, 
@@ -80,24 +88,36 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
                                                  butter.transform.position.z);
                 butter.transform.position = clampedPos;
             }
+
+            timeDismounted = 0f;
+            
+            // Dismount check
+            if (GroundCheck.UngroundedTime() > butterUngroundedDismountTime && onButter && butter != null)
+            {
+                DismountButter();
+                //reset variables for next butter mount
+                runOnce = true;
+                onButter = false;
+                butter = null;
+            }
         }
         else
         {
             butterHeight = 0;
+            timeDismounted += Time.deltaTime;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Butter"))
+        if (timeDismounted > disableMountAfterDismountTime && other.gameObject.CompareTag("Butter"))
         {
             butterPickupY = other.transform.position.y;
             jumpScript.jumpValue = 1f; // force a jump
             onButter = true;
-            butter = Instantiate(butterPrefab);
+            butter = Instantiate(butterPrefab, transform, true);
             Destroy(butter.GetComponent<Rigidbody>());
             butter.gameObject.tag = "Ground";
-            butter.gameObject.transform.SetParent(transform);
             butterMeshCollider = butter.GetComponent<MeshCollider>();
             Destroy(other.gameObject);
 
@@ -124,5 +144,21 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
         }
 
         return GroundCheck.GroundNormal();
+    }
+
+    public void DismountButter()
+    {
+        Debug.Log("DismountButter", gameObject);
+        butter.transform.SetParent(null);
+        if(butter.GetComponent<MeshCollider>() == null) butter.AddComponent<MeshCollider>();
+        MeshCollider dismountMesh = butter.GetComponent<MeshCollider>();
+        dismountMesh.material = butterPhysicsMaterial;
+        dismountMesh.convex = true;
+        Rigidbody butterRb = butter.AddComponent<Rigidbody>();
+        //butterRb.
+        butterRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        butterRb.interpolation = RigidbodyInterpolation.Extrapolate;
+        butterRb.AddForce(playerMovement.GetVelocity(), ForceMode.Impulse);
+        //butter.gameObject.tag = "Butter";
     }
 }

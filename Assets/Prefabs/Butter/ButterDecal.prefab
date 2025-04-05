@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8113218074951097846}
   - component: {fileID: 1638357299800769695}
   - component: {fileID: 2007436289139848082}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ButterDecal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,8 +54,8 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: -0.08792174}
   m_DecalLayerMask: 4294967295
   m_ScaleMode: 0
-  m_Offset: {x: 0.014846802, y: 0.008336067, z: 0.87636536}
-  m_Size: {x: 4.9961243, y: 3.5578914, z: 0.99513996}
+  m_Offset: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.9961243, y: 3.5578914, z: 1.5}
   m_FadeFactor: 0.5
 --- !u!114 &2007436289139848082
 MonoBehaviour:
@@ -70,5 +70,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decalPrefab: {fileID: 2312912937279993807}
+  decalParent: {fileID: 0}
   timeBetweenDecals: 0.01
   decalLifetime: 30
