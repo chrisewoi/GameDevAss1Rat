@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class PlayerButterSlideMove : MonoBehaviour, IMove
 {
+    public Transform butterOrientationTarget;
     private Vector3 velocity;
     private static bool onButter;
     public GameObject butterPrefab;
@@ -36,14 +37,14 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
 
     private float yV, xV, zV;
     private Vector3 smoothNormalV;
-    
-    
+
+
     public float height;
 
     public float radius;
 
     public LayerMask layerMask;
-    
+
     void Start()
     {
         jumpScript = GetComponent<PlayerJumpMove>();
@@ -63,7 +64,38 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
                 butterHeight = butterMeshCollider.bounds.size.y;
                 Destroy(butterMeshCollider);
             }
+
             butter.transform.position = transform.position;
+            butter.transform.position -= new Vector3(0, butterYOffset, 0);
+            butterOrientationTarget.position = butter.transform.position;
+
+            //this is the world-space normal, representing the direction you have to move away from the face to go "up"
+            Vector3 groundNormal = GroundCheck.GroundNormal();
+
+            //force the butter's up to match the normal (this rotates the butter)
+            butterOrientationTarget.up = groundNormal;
+
+            Vector3 cameraFlatForward = camera.transform.forward;
+
+            cameraFlatForward.y = 0;
+            
+            //figure out how far we need to rotate from global forward to our desired forward
+            float angleDifference = Vector3.SignedAngle(Vector3.forward, cameraFlatForward, Vector3.up);
+
+            //rotate globally around our Y axis, to match the rotation of the ground 
+            butterOrientationTarget.Rotate(Vector3.up, angleDifference + 90f);
+
+            float smoothX = Mathf.SmoothDampAngle(butter.transform.localEulerAngles.x,
+                butterOrientationTarget.localEulerAngles.x, ref xV, butterTiltTime);
+            float smoothY = Mathf.SmoothDampAngle(butter.transform.localEulerAngles.y,
+                butterOrientationTarget.localEulerAngles.y, ref yV, 0.03f);
+            float smoothZ = Mathf.SmoothDampAngle(butter.transform.localEulerAngles.z,
+                butterOrientationTarget.localEulerAngles.z, ref zV, butterTiltTime);
+
+
+            butter.transform.localEulerAngles = new Vector3(smoothX, smoothY, smoothZ);
+            /*
+            
             butter.transform.position -= new Vector3(0,butterYOffset, 0);
             smoothNormal = Vector3.SmoothDamp(smoothNormal, GroundCheck.GroundNormal(), ref smoothNormalV, butterTiltTime);
             Vector3 angles = butter.transform.InverseTransformDirection(smoothNormal * maxTiltAngle);
@@ -81,11 +113,12 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
             
             
             // sets butter yPos after mount time has passed
+
             if (timeActivated > Time.time - mountTime)
             {
-                Vector3 clampedPos = new Vector3(butter.transform.position.x, 
-                                                 butterPickupY, 
-                                                 butter.transform.position.z);
+                Vector3 clampedPos = new Vector3(butter.transform.position.x,
+                    butterPickupY,
+                    butter.transform.position.z);
                 butter.transform.position = clampedPos;
             }
 
@@ -135,7 +168,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     {
         return butterHeight;
     }
-    
+
     Vector3 GetNormal()
     {
         if (GroundCheck.GroundNormal() == Vector3.zero) // No ground angle detected
