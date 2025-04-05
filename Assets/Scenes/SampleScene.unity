@@ -14803,6 +14803,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 13400000, guid: 3ebbb60c351aa0c40b800522cdcd4eff, type: 2}
     - target: {fileID: 6682280493887059074, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
+      propertyPath: butterOrientationTarget
+      value: 
+      objectReference: {fileID: 1234132939}
+    - target: {fileID: 6682280493887059074, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: butterUngroundedDismountTime
       value: 1
       objectReference: {fileID: 0}
@@ -14913,3 +14917,4 @@ SceneRoots:
   - {fileID: 7923279238770646961}
   - {fileID: 872005304}
   - {fileID: 648843609}
+  - {fileID: 4871966737519423481}
