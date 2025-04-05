@@ -110,7 +110,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
             //angles.z = butter.transform.InverseTransformDirection(GroundCheck.GroundNormal()).z;
             butter.transform.rotation = Quaternion.Euler(new Vector3(angles.z, angles.y, -angles.x));
             //butter.transform.rotation = Quaternion.Slerp(butter.transform.rotation, Quaternion.Euler(angles), Time.deltaTime * 100f);
-            
+            */
             
             // sets butter yPos after mount time has passed
 
