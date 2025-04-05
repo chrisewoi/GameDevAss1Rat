@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife_Down
       objectReference: {fileID: 0}
+    - target: {fileID: 6155042930688711112, guid: a8738e52fd2bc6c479b630e7533cd2ff, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6782643431661011826, guid: a8738e52fd2bc6c479b630e7533cd2ff, type: 3}
       propertyPath: m_LocalScale.x
       value: 250

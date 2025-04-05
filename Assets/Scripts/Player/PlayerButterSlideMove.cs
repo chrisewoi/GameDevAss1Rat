@@ -3,21 +3,26 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class PlayerButterSlideMove : MonoBehaviour, IMove
 {
     public Transform butterOrientationTarget;
+    private Vector3 butterOrientationLast;
     private Vector3 velocity;
     private static bool onButter;
     public GameObject butterPrefab;
     private GameObject butter;
-    public GameObject camera;
+    public new GameObject camera;
     public float butterYOffset;
+    private float butterYFall, butterYFallSmooth;
+    public float butterFallMult;
+    public float butterFallDelay;
     private PlayerJumpMove jumpScript;
     private float butterPickupY;
     public float mountTime;
     public float butterTiltTime;
-    public float maxTiltAngle;
+    public float maxTurnAngle;
     public float timeActivated;
     public MeshCollider butterMeshCollider;
     private static float butterHeight;
@@ -35,7 +40,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
 
     public float speed;
 
-    private float yV, xV, zV;
+    private float yV, xV, zV, yFallV;
     private Vector3 smoothNormalV;
 
 
@@ -65,15 +70,17 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
                 Destroy(butterMeshCollider);
             }
 
-            butter.transform.position = transform.position;
-            butter.transform.position -= new Vector3(0, butterYOffset, 0);
+            butterYFall = Mathf.Clamp01((GroundCheck.UngroundedTime() - butterFallDelay )/ butterUngroundedDismountTime);
+            butterYFallSmooth = Mathf.SmoothDamp(butterYFallSmooth, Mathf.SmoothStep(0, 1, butterYFall), ref yFallV, 0.1f);
+
+            butter.transform.position = transform.position - new Vector3(0, butterYOffset + butterYFallSmooth * butterFallMult, 0);
+            //butter.transform.position -= new Vector3(0, butterYOffset + butterYFall * butterFallMult, 0);
             butterOrientationTarget.position = butter.transform.position;
 
             //this is the world-space normal, representing the direction you have to move away from the face to go "up"
             Vector3 groundNormal = GroundCheck.GroundNormal();
 
-            //force the butter's up to match the normal (this rotates the butter)
-            butterOrientationTarget.up = groundNormal;
+
 
             Vector3 cameraFlatForward = camera.transform.forward;
 
@@ -82,15 +89,54 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
             //figure out how far we need to rotate from global forward to our desired forward
             float angleDifference = Vector3.SignedAngle(Vector3.forward, cameraFlatForward, Vector3.up);
 
-            //rotate globally around our Y axis, to match the rotation of the ground 
-            butterOrientationTarget.Rotate(Vector3.up, angleDifference + 90f);
+            bool falling = true;
+            
+            // If we aren't falling, basically
+            if (GroundCheck.UngroundedTime() < 0.5f)
+            {
+                falling = false;
+                //force the butter's up to match the normal (this rotates the butter)
+                butterOrientationTarget.up = groundNormal;
+                //rotate globally around our Y axis, to match the rotation of the ground 
+                butterOrientationTarget.Rotate(Vector3.up, angleDifference + 90f);
 
+                // last recorded orientation before falling
+                butterOrientationLast = butterOrientationTarget.eulerAngles;
+                // now tweak it so the butter can fall away at a little (random) angle
+                float randomAmount = 20f;
+                butterOrientationLast = new Vector3(butterOrientationLast.x + Random.Range(-randomAmount*2f, randomAmount*2f),
+                                                    butterOrientationLast.y + Random.Range(-randomAmount/2f, randomAmount/2f),
+                                                    butterOrientationLast.z + Random.Range(-randomAmount*3f, randomAmount*3f));
+            }
+            
+            Vector3 setAngles = butterOrientationTarget.eulerAngles;
+
+            float yRotSmoothTimeMult = 1f;
+            if (Mathf.Abs(butterOrientationTarget.localEulerAngles.y - butter.transform.localEulerAngles.y) >
+                maxTurnAngle)
+            {
+                yRotSmoothTimeMult = 0.5f;
+            }
+
+            float fallingSmoothTimeMult = 1f;
+            if (falling)
+            {
+                setAngles = butterOrientationLast;
+                fallingSmoothTimeMult = 6f;
+            }
+
+            float freshlyGroundedSmoothTimeMult = 1f;
+            if (GroundCheck.GroundedTime() > 0f && GroundCheck.GroundedTime() < 0.5f)
+            {
+                freshlyGroundedSmoothTimeMult = 0.5f;
+            }
+            
             float smoothX = Mathf.SmoothDampAngle(butter.transform.localEulerAngles.x,
-                butterOrientationTarget.localEulerAngles.x, ref xV, butterTiltTime);
+                setAngles.x, ref xV, butterTiltTime * fallingSmoothTimeMult * freshlyGroundedSmoothTimeMult);
             float smoothY = Mathf.SmoothDampAngle(butter.transform.localEulerAngles.y,
-                butterOrientationTarget.localEulerAngles.y, ref yV, 0.03f);
+                setAngles.y, ref yV, falling?butterTiltTime * yRotSmoothTimeMult * fallingSmoothTimeMult:0.02f * 1f/math.pow(freshlyGroundedSmoothTimeMult, 3f));
             float smoothZ = Mathf.SmoothDampAngle(butter.transform.localEulerAngles.z,
-                butterOrientationTarget.localEulerAngles.z, ref zV, butterTiltTime);
+                setAngles.z, ref zV, butterTiltTime * fallingSmoothTimeMult * freshlyGroundedSmoothTimeMult);
 
 
             butter.transform.localEulerAngles = new Vector3(smoothX, smoothY, smoothZ);
@@ -152,6 +198,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
             Destroy(butter.GetComponent<Rigidbody>());
             butter.gameObject.tag = "Ground";
             butterMeshCollider = butter.GetComponent<MeshCollider>();
+            butterMeshCollider.material.dynamicFriction = 0f;
             Destroy(other.gameObject);
 
             timeActivated = Time.time;
@@ -186,12 +233,13 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
         if(butter.GetComponent<MeshCollider>() == null) butter.AddComponent<MeshCollider>();
         MeshCollider dismountMesh = butter.GetComponent<MeshCollider>();
         dismountMesh.material = butterPhysicsMaterial;
+        dismountMesh.material.dynamicFriction = 0.4f;
         dismountMesh.convex = true;
         Rigidbody butterRb = butter.AddComponent<Rigidbody>();
         //butterRb.
         butterRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         butterRb.interpolation = RigidbodyInterpolation.Extrapolate;
         butterRb.AddForce(playerMovement.GetVelocity(), ForceMode.Impulse);
-        //butter.gameObject.tag = "Butter";
+        butter.gameObject.tag = "Butter";
     }
 }

@@ -66,7 +66,6 @@ public class PlayerJumpMove : MonoBehaviour, IMove
 
         
         if (true /*powerJumpMode*/) PowerJump();
-        else Jump();
         
         
         
@@ -111,6 +110,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
         //////////
         /// Old Code
         //////////
+        /*
         if(Input.GetButtonDown("Jump") && jumpValue <= 0) // Pressed
         {
             jumpCharge = 0f;
@@ -130,7 +130,7 @@ public class PlayerJumpMove : MonoBehaviour, IMove
             }
         }
         
-        
+        */
         //velocity = Vector3.Lerp(Vector3.zero, jumpDir*(jumpImpulse + jumpCharge*powerJumpMult), jumpCurve.Evaluate(jumpValue));
     }
 

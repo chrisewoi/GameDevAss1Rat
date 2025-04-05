@@ -4,7 +4,7 @@ using UnityEngine;
 public class ButterTrailDecalsParent : MonoBehaviour
 {
     public static Transform butterTrailDecalsParent;
-    public static string name;
+    private new static string name;
 
     void Start()
     {

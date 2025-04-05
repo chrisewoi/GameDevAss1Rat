@@ -14,7 +14,7 @@ public class PlayerPlanarMove : MonoBehaviour, IMove
     public Vector2 moveInput => new Vector2(Input.GetAxis("Horizontal"),
         Input.GetAxis("Vertical"));
 
-    private Camera camera;
+    private new Camera camera;
 
 
     private void Awake()

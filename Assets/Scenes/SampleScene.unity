@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &55852652
 Transform:
   m_ObjectHideFlags: 0
@@ -1214,114 +1214,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204560352}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &217281629
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 217281633}
-  - component: {fileID: 217281632}
-  - component: {fileID: 217281631}
-  - component: {fileID: 217281630}
-  m_Layer: 0
-  m_Name: Butter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &217281630
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217281629}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &217281631
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217281629}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &217281632
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217281629}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &217281633
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217281629}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -479.73776, y: 45.214424, z: -484.06436}
-  m_LocalScale: {x: 2.5199, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &255558672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,7 +1334,7 @@ PrefabInstance:
       objectReference: {fileID: 349235132}
     - target: {fileID: 4728033698055052956, guid: ccc9addfe5a49a648a089cac08842416, type: 3}
       propertyPath: m_VersionIndex
-      value: 7273
+      value: 7276
       objectReference: {fileID: 0}
     - target: {fileID: 6856286578167939612, guid: ccc9addfe5a49a648a089cac08842416, type: 3}
       propertyPath: m_Mesh
@@ -4403,7 +4295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &698371262
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4539,7 +4431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!183 &700541412
 Cloth:
   m_ObjectHideFlags: 0
@@ -9741,6 +9633,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chrris iz stoopid budder
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a9af536b844408c49bcb44249dcdf95c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12198,7 +12094,7 @@ PrefabInstance:
       objectReference: {fileID: 2112983557}
     - target: {fileID: 4728033698055052956, guid: ccc9addfe5a49a648a089cac08842416, type: 3}
       propertyPath: m_VersionIndex
-      value: 7273
+      value: 7276
       objectReference: {fileID: 0}
     - target: {fileID: 6856286578167939612, guid: ccc9addfe5a49a648a089cac08842416, type: 3}
       propertyPath: m_Mesh
@@ -13092,6 +12988,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 78f6485bdb5ad3047a89253492c8db94, type: 3}
       propertyPath: m_Name
       value: chopping board fixed
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 78f6485bdb5ad3047a89253492c8db94, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14380,7 +14280,7 @@ PrefabInstance:
       objectReference: {fileID: 1404622111}
     - target: {fileID: 4728033698055052956, guid: ccc9addfe5a49a648a089cac08842416, type: 3}
       propertyPath: m_VersionIndex
-      value: 7273
+      value: 7276
       objectReference: {fileID: 0}
     - target: {fileID: 6856286578167939612, guid: ccc9addfe5a49a648a089cac08842416, type: 3}
       propertyPath: m_Mesh
@@ -14696,7 +14596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2789434687890732487, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: m_RenderPostProcessing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2789434687890732487, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: m_RequiresDepthTextureOption
@@ -14705,6 +14605,10 @@ PrefabInstance:
     - target: {fileID: 2807719295847116988, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: m_ClearFlags
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807719295847116988, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
+      propertyPath: near clip plane
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2807719295847116988, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -14774,6 +14678,10 @@ PrefabInstance:
       propertyPath: far clip plane
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 4489945467342333977, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 4571009440715946639, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -14791,8 +14699,20 @@ PrefabInstance:
       value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 6682280493887059074, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
+      propertyPath: maxTurnAngle
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682280493887059074, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
+      propertyPath: butterFallMult
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682280493887059074, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: butterTiltTime
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682280493887059074, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
+      propertyPath: butterFallDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6682280493887059074, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: layerMask.m_Bits
@@ -14812,7 +14732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6682280493887059074, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: disableMountAfterDismountTime
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6741302169872786178, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: uiSlider
@@ -14905,7 +14825,6 @@ SceneRoots:
   - {fileID: 7126904508499558648}
   - {fileID: 1653227951}
   - {fileID: 1735946256}
-  - {fileID: 217281633}
   - {fileID: 700541416}
   - {fileID: 698371266}
   - {fileID: 979955222}
