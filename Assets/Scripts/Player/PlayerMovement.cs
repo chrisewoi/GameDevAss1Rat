@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public static float timeToUnground;
 
     private Vector3 finalVelocity;
+    private static bool isFalling;
 
 
     private IMove[] moveInterfaces;
@@ -54,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
             finalVelocity *= butterPlanarVelocityMult;
             finalVelocity.y = velocity.y;
         }
+        isFalling = finalVelocity.y < 0f && !GroundCheck.isGrounded() ? true : false;
+        print(isFalling);
         characterController.Move(finalVelocity*Time.deltaTime);
 
 
@@ -109,6 +112,11 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 GetVelocity()
     {
         return finalVelocity;
+    }
+
+    public static bool IsFalling()
+    {
+        return isFalling;
     }
     
 }

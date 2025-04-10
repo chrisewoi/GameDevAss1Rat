@@ -28,6 +28,10 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     private static float butterHeight;
     private bool runOnce;
 
+    private float jumpHeldTime;
+
+    public float onButterGravityMult;
+
     public float butterUngroundedDismountTime;
     public float disableMountAfterDismountTime;
     public float timeDismounted;
@@ -60,6 +64,8 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
 
     void Update()
     {
+        SetJumpHeldTime();
+        
         if (onButter && butter != null)
         {
             //velocity = PlayerPlanarMove.GetVelocity();
@@ -93,7 +99,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
             bool falling = true;
             
             // If we aren't falling, basically
-            if (GroundCheck.UngroundedTime() < 0.5f)
+            if (!PlayerMovement.IsFalling()) //if (GroundCheck.UngroundedTime() < 0.5f)
             {
                 falling = false;
                 //force the butter's up to match the normal (this rotates the butter)
@@ -159,20 +165,22 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
             //butter.transform.rotation = Quaternion.Slerp(butter.transform.rotation, Quaternion.Euler(angles), Time.deltaTime * 100f);
             */
             
+            
             // sets butter yPos after mount time has passed
-
             if (timeActivated > Time.time - mountTime)
             {
                 Vector3 clampedPos = new Vector3(butter.transform.position.x,
                     butterPickupY,
                     butter.transform.position.z);
                 butter.transform.position = clampedPos;
+                
+                //
             }
 
             timeDismounted = 0f;
             
             // Dismount check
-            if (GroundCheck.UngroundedTime() > butterUngroundedDismountTime && onButter && butter != null)
+            if (jumpHeldTime > butterUngroundedDismountTime && onButter && butter != null) //(GroundCheck.UngroundedTime() > butterUngroundedDismountTime && onButter && butter != null)
             {
                 DismountButter();
                 //reset variables for next butter mount
@@ -185,25 +193,34 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
         {
             butterHeight = 0;
             timeDismounted += Time.deltaTime;
+            PlayerGravityMove.SetButterGravityMult(1f);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (timeDismounted > disableMountAfterDismountTime && other.gameObject.CompareTag("Butter"))
+        if (other.gameObject.CompareTag("Butter"))
         {
-            butterPickupY = other.transform.position.y;
-            jumpScript.jumpValue = 1f; // force a jump
-            onButter = true;
-            butter = Instantiate(butterPrefab, transform, true);
-            Destroy(butter.GetComponent<Rigidbody>());
-            butter.gameObject.tag = "Ground";
-            butterMeshCollider = butter.GetComponent<MeshCollider>();
-            butterMeshCollider.material.dynamicFriction = 0f;
-            Destroy(other.gameObject);
+            if (timeDismounted > disableMountAfterDismountTime)
+            {
+                butterPickupY = other.transform.position.y;
+                jumpScript.jumpValue = 1f; // force a jump
+                onButter = true;
+                butter = Instantiate(butterPrefab, transform, true);
+                Destroy(butter.GetComponent<Rigidbody>());
+                butter.gameObject.tag = "Ground";
+                butterMeshCollider = butter.GetComponent<MeshCollider>();
+                butterMeshCollider.material.dynamicFriction = 0f;
+                Destroy(other.gameObject);
 
-            timeActivated = Time.time;
-            Physics.SyncTransforms();
+                timeActivated = Time.time;
+                Physics.SyncTransforms();
+            }
+
+            if (onButter)
+            {
+                PlayerGravityMove.SetButterGravityMult(onButterGravityMult);
+            }
         }
     }
 
@@ -215,6 +232,18 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     public static float ButterHeight()
     {
         return butterHeight;
+    }
+
+    private void SetJumpHeldTime()
+    {
+        if (Input.GetButton("Jump"))
+        {
+            jumpHeldTime += Time.deltaTime;
+        }
+        else
+        {
+            jumpHeldTime = 0f;
+        }
     }
 
     Vector3 GetNormal()

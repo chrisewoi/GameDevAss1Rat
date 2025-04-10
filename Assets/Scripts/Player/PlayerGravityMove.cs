@@ -8,12 +8,16 @@ public class PlayerGravityMove : MonoBehaviour, IMove
 
     public static float gravity;
     public static float gravityMult;
+    public static float butterGravityMult;
     public static float multAccelRate;
     
     
     void Start()
     {
+        gravity = 2.5f;
         gravityMult = 1;
+        multAccelRate = 1f;
+        butterGravityMult = 1;
     }
 
     void Update()
@@ -26,7 +30,7 @@ public class PlayerGravityMove : MonoBehaviour, IMove
         {
             gravityMult += multAccelRate * Time.deltaTime;
         }
-        velocity = gravity * 9.8f * gravityMult * Vector3.down;
+        velocity = gravity * 9.8f * gravityMult * butterGravityMult * Vector3.down;
     }
 
     public static Vector3 GetGravityVelocity()
@@ -34,13 +38,13 @@ public class PlayerGravityMove : MonoBehaviour, IMove
         return velocity;
     }
 
-    public static void SetGravityMult(float value)
+    public static void SetButterGravityMult(float value)
     {
-        gravityMult = value;
+        butterGravityMult = value;
     }
 
-    public static float GetGravityMult()
+    public static float GetButterGravityMult()
     {
-        return gravityMult;
+        return butterGravityMult;
     }
 }
