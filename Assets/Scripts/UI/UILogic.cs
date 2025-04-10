@@ -12,6 +12,7 @@ namespace UI
         private bool _doOnce;
 
         float _timer;
+        float _worldActualTime;
 
         private void Start()
         {
@@ -34,7 +35,9 @@ namespace UI
                 }
 
             }
-            if (jumpTutorialPanel.activeInHierarchy && Input.anyKeyDown)
+
+                            //Need to add UI timer in game to figure out when exactly events happen
+            if (Time.unscaledTime > 3.5 && jumpTutorialPanel.activeInHierarchy && Input.GetKeyDown(KeyCode.Space))
             {
                 DisablePanel();
                 paused = false;
@@ -59,8 +62,10 @@ namespace UI
                 EnablePanel();
                 Time.timeScale = 0;
 
+
+
                 //If any key is pressed disable the panel and time returns to the normal scale.
-                if (Input.anyKeyDown)
+                if (Time.unscaledTime > 2.5 && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)))
                 {
                     DisablePanel();
                     Time.timeScale = 1;
