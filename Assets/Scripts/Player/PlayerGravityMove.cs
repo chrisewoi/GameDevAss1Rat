@@ -6,9 +6,9 @@ public class PlayerGravityMove : MonoBehaviour, IMove
     MoveType IMove.moveType => MoveType.Gravity;
     Vector3 IMove.v => velocity;
 
-    public float gravity;
-    public float gravityMult;
-    public float multAccelRate;
+    public static float gravity;
+    public static float gravityMult;
+    public static float multAccelRate;
     
     
     void Start()
@@ -32,5 +32,15 @@ public class PlayerGravityMove : MonoBehaviour, IMove
     public static Vector3 GetGravityVelocity()
     {
         return velocity;
+    }
+
+    public static void SetGravityMult(float value)
+    {
+        gravityMult = value;
+    }
+
+    public static float GetGravityMult()
+    {
+        return gravityMult;
     }
 }

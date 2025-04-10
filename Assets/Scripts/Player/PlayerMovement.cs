@@ -18,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
         public MoveType moveType;
         public Vector3 v;
     }
+
+
+    public float butterPlanarVelocityMult;
+    private bool onButter => PlayerButterSlideMove.IsSliding();
+    
+    
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -32,12 +38,21 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
         finalVelocity = Vector3.zero;
         characterController.radius = 0.5f + PlayerButterSlideMove.ButterHeight();
         
         foreach (var move in moveInterfaces)
         {
+            //print(move.moveType + " velocity: " + move.v);
             finalVelocity += move.v;
+        }
+
+        if (onButter)
+        {
+            Vector3 velocity = finalVelocity;
+            finalVelocity *= butterPlanarVelocityMult;
+            finalVelocity.y = velocity.y;
         }
         characterController.Move(finalVelocity*Time.deltaTime);
 
