@@ -21,6 +21,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
     private PlayerJumpMove jumpScript;
     private float butterPickupY;
     public float mountTime;
+    public float mountJumpStrength;
     public float butterTiltTime;
     public float maxTurnAngle;
     public float timeActivated;
@@ -175,6 +176,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
                 butter.transform.position = clampedPos;
                 
                 //
+                PlayerGravityMove.SetButterGravityMult(onButterGravityMult);
             }
 
             timeDismounted = 0f;
@@ -204,7 +206,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
             if (timeDismounted > disableMountAfterDismountTime)
             {
                 butterPickupY = other.transform.position.y;
-                jumpScript.jumpValue = 1f; // force a jump
+                jumpScript.jumpValue = mountJumpStrength; // force a jump
                 onButter = true;
                 butter = Instantiate(butterPrefab, transform, true);
                 Destroy(butter.GetComponent<Rigidbody>());
@@ -219,7 +221,7 @@ public class PlayerButterSlideMove : MonoBehaviour, IMove
 
             if (onButter)
             {
-                PlayerGravityMove.SetButterGravityMult(onButterGravityMult);
+                //
             }
         }
     }
