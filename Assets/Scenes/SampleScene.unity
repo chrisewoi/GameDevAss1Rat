@@ -516,9 +516,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 102336754}
+  - component: {fileID: 102336757}
   - component: {fileID: 102336756}
   - component: {fileID: 102336755}
-  - component: {fileID: 102336757}
   m_Layer: 0
   m_Name: Box Volume
   m_TagString: Untagged
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102336753}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 445fc1cd961f8bf4ca3c10cb76587edd, type: 3}
   m_Name: 
@@ -594,12 +594,16 @@ MonoBehaviour:
   intensity:
     m_OverrideState: 0
     m_Value: 0
-  intensityMax:
-    m_OverrideState: 0
-    m_Value: 0
-  pulseSpeed: 0
-  volume: {fileID: 0}
-  vignette: {fileID: 0}
+  intensityMin: 0.5
+  intensityMax: 0.6
+  current: 0
+  pulseSpeed: 5
+  timeInVolume: 0
+  maxTimeInVolume: 10
+  smoothnessMin: 0.2
+  smoothnessMax: 0.6
+  weightTimeMax: 4
+  weightMin: 0.5
 --- !u!4 &104191137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2348132570259124513, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
@@ -25417,7 +25421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1089823923705754328, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: setMouseSensitivity
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1927734131607180010, guid: 1bc6e3b17a82cc04caad69a39f1e93b1, type: 3}
       propertyPath: butterPlanarVelocityMult

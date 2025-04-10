@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
             finalVelocity.y = velocity.y;
         }
         isFalling = finalVelocity.y < 0f && !GroundCheck.isGrounded() ? true : false;
-        print(isFalling);
         characterController.Move(finalVelocity*Time.deltaTime);
 
 
