@@ -856,7 +856,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4430
+  m_VersionIndex: 4829
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1018,7 +1018,7 @@ MonoBehaviour:
   radius: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!65 &1168231739332870443
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1365,7 +1365,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1638357299800769695, guid: f4cfd273a4a8c8047847b73a45ed422a, type: 3}
       propertyPath: m_DecalLayerMask
-      value: 238
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2007436289139848082, guid: f4cfd273a4a8c8047847b73a45ed422a, type: 3}
       propertyPath: m_Enabled
