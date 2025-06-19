@@ -1054,6 +1054,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CabinetForMere (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 6737211088762654457, guid: 64a1882e7c18f144087cfcbf7b0231ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2896,6 +2900,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CabinetForMere (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 6737211088762654457, guid: 64a1882e7c18f144087cfcbf7b0231ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3233,6 +3241,10 @@ PrefabInstance:
     - target: {fileID: 6548838426444792018, guid: d7210bd0ad9c648449686d7aea1e8853, type: 3}
       propertyPath: m_Name
       value: XS_Back (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548838426444792018, guid: d7210bd0ad9c648449686d7aea1e8853, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10597,6 +10609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XS_Back (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6548838426444792018, guid: d7210bd0ad9c648449686d7aea1e8853, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11104,6 +11120,10 @@ PrefabInstance:
     - target: {fileID: 1885291555095833828, guid: 6b54fcf91dff92445a1088c91535c6e4, type: 3}
       propertyPath: m_Name
       value: Back (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885291555095833828, guid: 6b54fcf91dff92445a1088c91535c6e4, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12979,6 +12999,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right
       objectReference: {fileID: 0}
+    - target: {fileID: 3901994183666716055, guid: 73afaea80c89048428eeaf7a17b069f2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4426329960791676717, guid: 73afaea80c89048428eeaf7a17b069f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 275.6
@@ -13800,6 +13824,10 @@ PrefabInstance:
     - target: {fileID: 1885291555095833828, guid: 6b54fcf91dff92445a1088c91535c6e4, type: 3}
       propertyPath: m_Name
       value: Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885291555095833828, guid: 6b54fcf91dff92445a1088c91535c6e4, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20972,6 +21000,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Back Long (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1087742778168319183, guid: 4062f1255c7519b4c9059abf8a56075f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21921,6 +21953,10 @@ PrefabInstance:
     - target: {fileID: 1885291555095833828, guid: 6b54fcf91dff92445a1088c91535c6e4, type: 3}
       propertyPath: m_Name
       value: Back (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885291555095833828, guid: 6b54fcf91dff92445a1088c91535c6e4, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23105,6 +23141,10 @@ PrefabInstance:
     - target: {fileID: 1885291555095833828, guid: 6b54fcf91dff92445a1088c91535c6e4, type: 3}
       propertyPath: m_Name
       value: Back (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885291555095833828, guid: 6b54fcf91dff92445a1088c91535c6e4, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25595,6 +25635,10 @@ PrefabInstance:
     - target: {fileID: 1087742778168319183, guid: 4062f1255c7519b4c9059abf8a56075f, type: 3}
       propertyPath: m_Name
       value: Back (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087742778168319183, guid: 4062f1255c7519b4c9059abf8a56075f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28692,6 +28736,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CabinetForMere (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 6737211088762654457, guid: 64a1882e7c18f144087cfcbf7b0231ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30251,6 +30299,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XS_Back (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6548838426444792018, guid: d7210bd0ad9c648449686d7aea1e8853, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30949,6 +31001,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Back Long (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1087742778168319183, guid: 4062f1255c7519b4c9059abf8a56075f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31343,6 +31399,10 @@ PrefabInstance:
     - target: {fileID: 1087742778168319183, guid: 4062f1255c7519b4c9059abf8a56075f, type: 3}
       propertyPath: m_Name
       value: Back Long
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087742778168319183, guid: 4062f1255c7519b4c9059abf8a56075f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32626,6 +32686,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CabinetForMere (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 6737211088762654457, guid: 64a1882e7c18f144087cfcbf7b0231ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32823,6 +32887,10 @@ PrefabInstance:
     - target: {fileID: 6737211088762654457, guid: 64a1882e7c18f144087cfcbf7b0231ba, type: 3}
       propertyPath: m_Name
       value: CabinetForMere (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6737211088762654457, guid: 64a1882e7c18f144087cfcbf7b0231ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38499,6 +38567,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XS_Back
       objectReference: {fileID: 0}
+    - target: {fileID: 6548838426444792018, guid: d7210bd0ad9c648449686d7aea1e8853, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38877,6 +38949,10 @@ PrefabInstance:
     - target: {fileID: 1087742778168319183, guid: 4062f1255c7519b4c9059abf8a56075f, type: 3}
       propertyPath: m_Name
       value: Back Long (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087742778168319183, guid: 4062f1255c7519b4c9059abf8a56075f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39395,6 +39471,10 @@ PrefabInstance:
     - target: {fileID: 6737211088762654457, guid: 64a1882e7c18f144087cfcbf7b0231ba, type: 3}
       propertyPath: m_Name
       value: CabinetForMere (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6737211088762654457, guid: 64a1882e7c18f144087cfcbf7b0231ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
